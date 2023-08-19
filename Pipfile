@@ -10,6 +10,7 @@ black = "*"
 flake8 = "*"
 pytest = "*"
 flit = "*"
+pre-commit = "*"
 
 [requires]
 python_version = "3.11"
