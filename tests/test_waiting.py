@@ -15,19 +15,20 @@ def test_wait_until_timeout():
         assert False
 
     with pytest.raises(AssertionError):
-        waiting.wait_until(assertion=assertion)
+        waiting.wait_until(assertion=assertion, timeout=0.5)
 
 
 def test_wait_until_delayed_succesful_assertion():
+    timeout = 0.5
     start = datetime.datetime.now()
 
     def assertion():
-        if datetime.datetime.now() - start > datetime.timedelta(seconds=0.5):
+        if datetime.datetime.now() - start > datetime.timedelta(seconds=timeout/2):
             assert True
             return
         assert False
 
-    waiting.wait_until(assertion=assertion, timeout=1)
+    waiting.wait_until(assertion=assertion, timeout=timeout)
 
 
 def test_wait_until_nice_reporting():
@@ -36,6 +37,6 @@ def test_wait_until_nice_reporting():
 
     with pytest.raises(
         AssertionError,
-        match="Timeout of 1 seconds exceeded.\nActual was 1 but expected was 2\nassert 1 == 2",
+        match="Timeout of 0.5 seconds exceeded.\nActual was 1 but expected was 2\nassert 1 == 2",
     ):
-        waiting.wait_until(assertion=assertion, timeout=1)
+        waiting.wait_until(assertion=assertion, timeout=0.5)

@@ -2,7 +2,7 @@ import datetime
 from typing import Callable
 
 
-def wait_until(assertion: Callable, timeout: int = 5) -> None:
+def wait_until(assertion: Callable, timeout: float = 5) -> None:
     """
     Waits until the assertion does not raise an AssertionError. If the timeout is reached the last AssertionError is raised.
     This can be used if state changes need some time to propagate.
