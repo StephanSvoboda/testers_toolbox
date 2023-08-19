@@ -33,7 +33,7 @@ def test_wait_until_delayed_succesful_assertion():
 
 def test_wait_until_nice_reporting():
     def assertion():
-        assert 1 == 2, f"Actual was 1 but expected was 2"
+        assert 1 == 2, f"Actual was {1} but expected was {2}"
 
     with pytest.raises(
         AssertionError,
